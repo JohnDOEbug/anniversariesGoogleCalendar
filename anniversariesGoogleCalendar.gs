@@ -30,8 +30,9 @@ const TARGET_CALENDAR_ID = 'xxxxxxxxxxxxxxxxxxx@group.calendar.google.com'; // <
 const REPORT_RECIPIENT_EMAIL = '; // <<< SET YOUR EMAIL HERE (or '' for no report)
 
 // --- Language Configuration ---
-// Prefix for birthday event titles (e.g., "Birthday"). Set to '' for no prefix.
+// Prefix/Postfix for birthday event titles (e.g., "Birthday"). Set to '' for no prefix or postfix.
 const BIRTHDAY_TITLE_PREFIX = 'Geburtstag';
+const BIRTHDAY_TITLE_POSTFIX = '';
 
 // Label before the contact resource ID in the event description. IMPORTANT: Keep the space at the end.
 const DESC_CONTACT_ID_PREFIX = "Kontakt-ID: ";
@@ -57,6 +58,7 @@ function anniversaryEvents() {
 
   Logger.log("Skriptlauf gestartet. Kalender-ID: %s, Jahr: %s", calendarId, currentYear);
   Logger.log("Konfigurierter Geburtstagstitel-Präfix: '%s'", BIRTHDAY_TITLE_PREFIX);
+  Logger.log("Konfigurierter Geburtstagstitel-Postfix: '%s'", BIRTHDAY_TITLE_POSTFIX);
 
   // 1. Ereignisse aus Google Kontakten abrufen
   var contactEvents = getAllContactsEvents();
@@ -156,6 +158,8 @@ function getAllContactsEvents() {
 
                 // Titel mit konfiguriertem Präfix erstellen
                 var birthdayTitle = (BIRTHDAY_TITLE_PREFIX ? BIRTHDAY_TITLE_PREFIX + " " : "") + name;
+                // Postfix ergänzen
+                birthdayTitle = birthdayTitle + (BIRTHDAY_TITLE_POSTFIX ? " " + BIRTHDAY_TITLE_POSTFIX : "");
 
                 // 'name' Feld hinzufügen
                 contactsEvents.push({
