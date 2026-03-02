@@ -6,7 +6,7 @@
  * @description
  * Synchronisiert Geburtstage und berechnet das Alter für das AKTUELLE Jahr dynamisch.
  * Aktualisiert bestehende Serientermine, wenn das Alter/Jahr in der Beschreibung veraltet ist.
- */
+ *
  * @description
  * This script synchronizes birthdays and special events from Google
  * Contacts with a selected Google Calendar.
